@@ -9,6 +9,6 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User'
+export type * from './models/Track'
 export type * from './models/Post'
-export type * from './models/Image'
 export type * from './commonInputTypes'

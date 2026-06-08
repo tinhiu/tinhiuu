@@ -28,62 +28,112 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   id: number | null
+  followers: number | null
+  following: number | null
+  playlists: number | null
 }
 
 export type UserSumAggregateOutputType = {
   id: number | null
+  followers: number | null
+  following: number | null
+  playlists: number | null
 }
 
 export type UserMinAggregateOutputType = {
   id: number | null
-  username: string | null
+  spotify_id: string | null
+  display_name: string | null
   email: string | null
-  name: string | null
+  username: string | null
+  external_urls: string | null
+  followers: number | null
+  following: number | null
+  playlists: number | null
+  href: string | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: number | null
-  username: string | null
+  spotify_id: string | null
+  display_name: string | null
   email: string | null
-  name: string | null
+  username: string | null
+  external_urls: string | null
+  followers: number | null
+  following: number | null
+  playlists: number | null
+  href: string | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
-  username: number
+  spotify_id: number
+  display_name: number
   email: number
-  name: number
+  username: number
+  images: number
+  external_urls: number
+  followers: number
+  following: number
+  playlists: number
+  href: number
   _all: number
 }
 
 
 export type UserAvgAggregateInputType = {
   id?: true
+  followers?: true
+  following?: true
+  playlists?: true
 }
 
 export type UserSumAggregateInputType = {
   id?: true
+  followers?: true
+  following?: true
+  playlists?: true
 }
 
 export type UserMinAggregateInputType = {
   id?: true
-  username?: true
+  spotify_id?: true
+  display_name?: true
   email?: true
-  name?: true
+  username?: true
+  external_urls?: true
+  followers?: true
+  following?: true
+  playlists?: true
+  href?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
-  username?: true
+  spotify_id?: true
+  display_name?: true
   email?: true
-  name?: true
+  username?: true
+  external_urls?: true
+  followers?: true
+  following?: true
+  playlists?: true
+  href?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
-  username?: true
+  spotify_id?: true
+  display_name?: true
   email?: true
-  name?: true
+  username?: true
+  images?: true
+  external_urls?: true
+  followers?: true
+  following?: true
+  playlists?: true
+  href?: true
   _all?: true
 }
 
@@ -175,9 +225,16 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: number
-  username: string
+  spotify_id: string
+  display_name: string
   email: string
-  name: string | null
+  username: string
+  images: runtime.JsonValue
+  external_urls: string
+  followers: number
+  following: number
+  playlists: number
+  href: string
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -205,39 +262,67 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.IntFilter<"User"> | number
-  username?: Prisma.StringFilter<"User"> | string
+  spotify_id?: Prisma.StringFilter<"User"> | string
+  display_name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
-  name?: Prisma.StringNullableFilter<"User"> | string | null
-  images?: Prisma.ImageListRelationFilter
+  username?: Prisma.StringFilter<"User"> | string
+  images?: Prisma.JsonFilter<"User">
+  external_urls?: Prisma.StringFilter<"User"> | string
+  followers?: Prisma.IntFilter<"User"> | number
+  following?: Prisma.IntFilter<"User"> | number
+  playlists?: Prisma.IntFilter<"User"> | number
+  href?: Prisma.StringFilter<"User"> | string
   posts?: Prisma.PostListRelationFilter
+  favTracks?: Prisma.TrackListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrder
+  spotify_id?: Prisma.SortOrder
+  display_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
-  images?: Prisma.ImageOrderByRelationAggregateInput
+  username?: Prisma.SortOrder
+  images?: Prisma.SortOrder
+  external_urls?: Prisma.SortOrder
+  followers?: Prisma.SortOrder
+  following?: Prisma.SortOrder
+  playlists?: Prisma.SortOrder
+  href?: Prisma.SortOrder
   posts?: Prisma.PostOrderByRelationAggregateInput
+  favTracks?: Prisma.TrackOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  username?: string
+  spotify_id?: string
+  display_name?: string
   email?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  name?: Prisma.StringNullableFilter<"User"> | string | null
-  images?: Prisma.ImageListRelationFilter
+  username?: Prisma.StringFilter<"User"> | string
+  images?: Prisma.JsonFilter<"User">
+  external_urls?: Prisma.StringFilter<"User"> | string
+  followers?: Prisma.IntFilter<"User"> | number
+  following?: Prisma.IntFilter<"User"> | number
+  playlists?: Prisma.IntFilter<"User"> | number
+  href?: Prisma.StringFilter<"User"> | string
   posts?: Prisma.PostListRelationFilter
-}, "id" | "username" | "email">
+  favTracks?: Prisma.TrackListRelationFilter
+}, "id" | "spotify_id" | "display_name" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrder
+  spotify_id?: Prisma.SortOrder
+  display_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  username?: Prisma.SortOrder
+  images?: Prisma.SortOrder
+  external_urls?: Prisma.SortOrder
+  followers?: Prisma.SortOrder
+  following?: Prisma.SortOrder
+  playlists?: Prisma.SortOrder
+  href?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -250,92 +335,173 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"User"> | number
-  username?: Prisma.StringWithAggregatesFilter<"User"> | string
+  spotify_id?: Prisma.StringWithAggregatesFilter<"User"> | string
+  display_name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  username?: Prisma.StringWithAggregatesFilter<"User"> | string
+  images?: Prisma.JsonWithAggregatesFilter<"User">
+  external_urls?: Prisma.StringWithAggregatesFilter<"User"> | string
+  followers?: Prisma.IntWithAggregatesFilter<"User"> | number
+  following?: Prisma.IntWithAggregatesFilter<"User"> | number
+  playlists?: Prisma.IntWithAggregatesFilter<"User"> | number
+  href?: Prisma.StringWithAggregatesFilter<"User"> | string
 }
 
 export type UserCreateInput = {
-  username: string
+  spotify_id: string
+  display_name: string
   email: string
-  name?: string | null
-  images?: Prisma.ImageCreateNestedManyWithoutUserInput
+  username: string
+  images: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls: string
+  followers: number
+  following: number
+  playlists: number
+  href: string
   posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  favTracks?: Prisma.TrackCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: number
-  username: string
+  spotify_id: string
+  display_name: string
   email: string
-  name?: string | null
-  images?: Prisma.ImageUncheckedCreateNestedManyWithoutUserInput
+  username: string
+  images: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls: string
+  followers: number
+  following: number
+  playlists: number
+  href: string
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  favTracks?: Prisma.TrackUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  spotify_id?: Prisma.StringFieldUpdateOperationsInput | string
+  display_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  images?: Prisma.ImageUpdateManyWithoutUserNestedInput
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  images?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls?: Prisma.StringFieldUpdateOperationsInput | string
+  followers?: Prisma.IntFieldUpdateOperationsInput | number
+  following?: Prisma.IntFieldUpdateOperationsInput | number
+  playlists?: Prisma.IntFieldUpdateOperationsInput | number
+  href?: Prisma.StringFieldUpdateOperationsInput | string
   posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  favTracks?: Prisma.TrackUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  spotify_id?: Prisma.StringFieldUpdateOperationsInput | string
+  display_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  images?: Prisma.ImageUncheckedUpdateManyWithoutUserNestedInput
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  images?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls?: Prisma.StringFieldUpdateOperationsInput | string
+  followers?: Prisma.IntFieldUpdateOperationsInput | number
+  following?: Prisma.IntFieldUpdateOperationsInput | number
+  playlists?: Prisma.IntFieldUpdateOperationsInput | number
+  href?: Prisma.StringFieldUpdateOperationsInput | string
   posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  favTracks?: Prisma.TrackUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: number
-  username: string
+  spotify_id: string
+  display_name: string
   email: string
-  name?: string | null
+  username: string
+  images: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls: string
+  followers: number
+  following: number
+  playlists: number
+  href: string
 }
 
 export type UserUpdateManyMutationInput = {
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  spotify_id?: Prisma.StringFieldUpdateOperationsInput | string
+  display_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  images?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls?: Prisma.StringFieldUpdateOperationsInput | string
+  followers?: Prisma.IntFieldUpdateOperationsInput | number
+  following?: Prisma.IntFieldUpdateOperationsInput | number
+  playlists?: Prisma.IntFieldUpdateOperationsInput | number
+  href?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  spotify_id?: Prisma.StringFieldUpdateOperationsInput | string
+  display_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  images?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls?: Prisma.StringFieldUpdateOperationsInput | string
+  followers?: Prisma.IntFieldUpdateOperationsInput | number
+  following?: Prisma.IntFieldUpdateOperationsInput | number
+  playlists?: Prisma.IntFieldUpdateOperationsInput | number
+  href?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrder
+  spotify_id?: Prisma.SortOrder
+  display_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  images?: Prisma.SortOrder
+  external_urls?: Prisma.SortOrder
+  followers?: Prisma.SortOrder
+  following?: Prisma.SortOrder
+  playlists?: Prisma.SortOrder
+  href?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  followers?: Prisma.SortOrder
+  following?: Prisma.SortOrder
+  playlists?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrder
+  spotify_id?: Prisma.SortOrder
+  display_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  external_urls?: Prisma.SortOrder
+  followers?: Prisma.SortOrder
+  following?: Prisma.SortOrder
+  playlists?: Prisma.SortOrder
+  href?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  username?: Prisma.SortOrder
+  spotify_id?: Prisma.SortOrder
+  display_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  external_urls?: Prisma.SortOrder
+  followers?: Prisma.SortOrder
+  following?: Prisma.SortOrder
+  playlists?: Prisma.SortOrder
+  href?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  followers?: Prisma.SortOrder
+  following?: Prisma.SortOrder
+  playlists?: Prisma.SortOrder
 }
 
 export type UserNullableScalarRelationFilter = {
@@ -347,16 +513,28 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type UserCreateNestedOneWithoutFavTracksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFavTracksInput, Prisma.UserUncheckedCreateWithoutFavTracksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFavTracksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutFavTracksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFavTracksInput, Prisma.UserUncheckedCreateWithoutFavTracksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFavTracksInput
+  upsert?: Prisma.UserUpsertWithoutFavTracksInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFavTracksInput, Prisma.UserUpdateWithoutFavTracksInput>, Prisma.UserUncheckedUpdateWithoutFavTracksInput>
 }
 
 export type UserCreateNestedOneWithoutPostsInput = {
@@ -375,35 +553,107 @@ export type UserUpdateOneWithoutPostsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPostsInput, Prisma.UserUpdateWithoutPostsInput>, Prisma.UserUncheckedUpdateWithoutPostsInput>
 }
 
-export type UserCreateNestedOneWithoutImagesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutImagesInput, Prisma.UserUncheckedCreateWithoutImagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutImagesInput
-  connect?: Prisma.UserWhereUniqueInput
+export type UserCreateWithoutFavTracksInput = {
+  spotify_id: string
+  display_name: string
+  email: string
+  username: string
+  images: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls: string
+  followers: number
+  following: number
+  playlists: number
+  href: string
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
 }
 
-export type UserUpdateOneWithoutImagesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutImagesInput, Prisma.UserUncheckedCreateWithoutImagesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutImagesInput
-  upsert?: Prisma.UserUpsertWithoutImagesInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutImagesInput, Prisma.UserUpdateWithoutImagesInput>, Prisma.UserUncheckedUpdateWithoutImagesInput>
+export type UserUncheckedCreateWithoutFavTracksInput = {
+  id?: number
+  spotify_id: string
+  display_name: string
+  email: string
+  username: string
+  images: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls: string
+  followers: number
+  following: number
+  playlists: number
+  href: string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutFavTracksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFavTracksInput, Prisma.UserUncheckedCreateWithoutFavTracksInput>
+}
+
+export type UserUpsertWithoutFavTracksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFavTracksInput, Prisma.UserUncheckedUpdateWithoutFavTracksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFavTracksInput, Prisma.UserUncheckedCreateWithoutFavTracksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFavTracksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFavTracksInput, Prisma.UserUncheckedUpdateWithoutFavTracksInput>
+}
+
+export type UserUpdateWithoutFavTracksInput = {
+  spotify_id?: Prisma.StringFieldUpdateOperationsInput | string
+  display_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  images?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls?: Prisma.StringFieldUpdateOperationsInput | string
+  followers?: Prisma.IntFieldUpdateOperationsInput | number
+  following?: Prisma.IntFieldUpdateOperationsInput | number
+  playlists?: Prisma.IntFieldUpdateOperationsInput | number
+  href?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFavTracksInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  spotify_id?: Prisma.StringFieldUpdateOperationsInput | string
+  display_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  images?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls?: Prisma.StringFieldUpdateOperationsInput | string
+  followers?: Prisma.IntFieldUpdateOperationsInput | number
+  following?: Prisma.IntFieldUpdateOperationsInput | number
+  playlists?: Prisma.IntFieldUpdateOperationsInput | number
+  href?: Prisma.StringFieldUpdateOperationsInput | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutPostsInput = {
-  username: string
+  spotify_id: string
+  display_name: string
   email: string
-  name?: string | null
-  images?: Prisma.ImageCreateNestedManyWithoutUserInput
+  username: string
+  images: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls: string
+  followers: number
+  following: number
+  playlists: number
+  href: string
+  favTracks?: Prisma.TrackCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPostsInput = {
   id?: number
-  username: string
+  spotify_id: string
+  display_name: string
   email: string
-  name?: string | null
-  images?: Prisma.ImageUncheckedCreateNestedManyWithoutUserInput
+  username: string
+  images: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls: string
+  followers: number
+  following: number
+  playlists: number
+  href: string
+  favTracks?: Prisma.TrackUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPostsInput = {
@@ -423,64 +673,32 @@ export type UserUpdateToOneWithWhereWithoutPostsInput = {
 }
 
 export type UserUpdateWithoutPostsInput = {
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  spotify_id?: Prisma.StringFieldUpdateOperationsInput | string
+  display_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  images?: Prisma.ImageUpdateManyWithoutUserNestedInput
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  images?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls?: Prisma.StringFieldUpdateOperationsInput | string
+  followers?: Prisma.IntFieldUpdateOperationsInput | number
+  following?: Prisma.IntFieldUpdateOperationsInput | number
+  playlists?: Prisma.IntFieldUpdateOperationsInput | number
+  href?: Prisma.StringFieldUpdateOperationsInput | string
+  favTracks?: Prisma.TrackUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPostsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  username?: Prisma.StringFieldUpdateOperationsInput | string
+  spotify_id?: Prisma.StringFieldUpdateOperationsInput | string
+  display_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  images?: Prisma.ImageUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutImagesInput = {
-  username: string
-  email: string
-  name?: string | null
-  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
-}
-
-export type UserUncheckedCreateWithoutImagesInput = {
-  id?: number
-  username: string
-  email: string
-  name?: string | null
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
-}
-
-export type UserCreateOrConnectWithoutImagesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutImagesInput, Prisma.UserUncheckedCreateWithoutImagesInput>
-}
-
-export type UserUpsertWithoutImagesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutImagesInput, Prisma.UserUncheckedUpdateWithoutImagesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutImagesInput, Prisma.UserUncheckedCreateWithoutImagesInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutImagesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutImagesInput, Prisma.UserUncheckedUpdateWithoutImagesInput>
-}
-
-export type UserUpdateWithoutImagesInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
-}
-
-export type UserUncheckedUpdateWithoutImagesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  username?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  images?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  external_urls?: Prisma.StringFieldUpdateOperationsInput | string
+  followers?: Prisma.IntFieldUpdateOperationsInput | number
+  following?: Prisma.IntFieldUpdateOperationsInput | number
+  playlists?: Prisma.IntFieldUpdateOperationsInput | number
+  href?: Prisma.StringFieldUpdateOperationsInput | string
+  favTracks?: Prisma.TrackUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -489,13 +707,13 @@ export type UserUncheckedUpdateWithoutImagesInput = {
  */
 
 export type UserCountOutputType = {
-  images: number
   posts: number
+  favTracks: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  images?: boolean | UserCountOutputTypeCountImagesArgs
   posts?: boolean | UserCountOutputTypeCountPostsArgs
+  favTracks?: boolean | UserCountOutputTypeCountFavTracksArgs
 }
 
 /**
@@ -511,53 +729,81 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ImageWhereInput
+export type UserCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PostWhereInput
+export type UserCountOutputTypeCountFavTracksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TrackWhereInput
 }
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  username?: boolean
+  spotify_id?: boolean
+  display_name?: boolean
   email?: boolean
-  name?: boolean
-  images?: boolean | Prisma.User$imagesArgs<ExtArgs>
+  username?: boolean
+  images?: boolean
+  external_urls?: boolean
+  followers?: boolean
+  following?: boolean
+  playlists?: boolean
+  href?: boolean
   posts?: boolean | Prisma.User$postsArgs<ExtArgs>
+  favTracks?: boolean | Prisma.User$favTracksArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  username?: boolean
+  spotify_id?: boolean
+  display_name?: boolean
   email?: boolean
-  name?: boolean
+  username?: boolean
+  images?: boolean
+  external_urls?: boolean
+  followers?: boolean
+  following?: boolean
+  playlists?: boolean
+  href?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  username?: boolean
+  spotify_id?: boolean
+  display_name?: boolean
   email?: boolean
-  name?: boolean
+  username?: boolean
+  images?: boolean
+  external_urls?: boolean
+  followers?: boolean
+  following?: boolean
+  playlists?: boolean
+  href?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
-  username?: boolean
+  spotify_id?: boolean
+  display_name?: boolean
   email?: boolean
-  name?: boolean
+  username?: boolean
+  images?: boolean
+  external_urls?: boolean
+  followers?: boolean
+  following?: boolean
+  playlists?: boolean
+  href?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "email" | "name", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "spotify_id" | "display_name" | "email" | "username" | "images" | "external_urls" | "followers" | "following" | "playlists" | "href", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  images?: boolean | Prisma.User$imagesArgs<ExtArgs>
   posts?: boolean | Prisma.User$postsArgs<ExtArgs>
+  favTracks?: boolean | Prisma.User$favTracksArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -566,14 +812,21 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    images: Prisma.$ImagePayload<ExtArgs>[]
     posts: Prisma.$PostPayload<ExtArgs>[]
+    favTracks: Prisma.$TrackPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    username: string
+    spotify_id: string
+    display_name: string
     email: string
-    name: string | null
+    username: string
+    images: runtime.JsonValue
+    external_urls: string
+    followers: number
+    following: number
+    playlists: number
+    href: string
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -968,8 +1221,8 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  images<T extends Prisma.User$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   posts<T extends Prisma.User$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  favTracks<T extends Prisma.User$favTracksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$favTracksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TrackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1000,9 +1253,16 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'Int'>
-  readonly username: Prisma.FieldRef<"User", 'String'>
+  readonly spotify_id: Prisma.FieldRef<"User", 'String'>
+  readonly display_name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
-  readonly name: Prisma.FieldRef<"User", 'String'>
+  readonly username: Prisma.FieldRef<"User", 'String'>
+  readonly images: Prisma.FieldRef<"User", 'Json'>
+  readonly external_urls: Prisma.FieldRef<"User", 'String'>
+  readonly followers: Prisma.FieldRef<"User", 'Int'>
+  readonly following: Prisma.FieldRef<"User", 'Int'>
+  readonly playlists: Prisma.FieldRef<"User", 'Int'>
+  readonly href: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -1396,30 +1656,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.images
- */
-export type User$imagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Image
-   */
-  select?: Prisma.ImageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Image
-   */
-  omit?: Prisma.ImageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ImageInclude<ExtArgs> | null
-  where?: Prisma.ImageWhereInput
-  orderBy?: Prisma.ImageOrderByWithRelationInput | Prisma.ImageOrderByWithRelationInput[]
-  cursor?: Prisma.ImageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ImageScalarFieldEnum | Prisma.ImageScalarFieldEnum[]
-}
-
-/**
  * User.posts
  */
 export type User$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1441,6 +1677,30 @@ export type User$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * User.favTracks
+ */
+export type User$favTracksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Track
+   */
+  select?: Prisma.TrackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Track
+   */
+  omit?: Prisma.TrackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrackInclude<ExtArgs> | null
+  where?: Prisma.TrackWhereInput
+  orderBy?: Prisma.TrackOrderByWithRelationInput | Prisma.TrackOrderByWithRelationInput[]
+  cursor?: Prisma.TrackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TrackScalarFieldEnum | Prisma.TrackScalarFieldEnum[]
 }
 
 /**

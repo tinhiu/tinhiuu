@@ -8,12 +8,35 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  username String @unique
-  email String  @unique
-  name  String?
-  images Image[]
-  posts Post[]
+  id            Int     @id @default(autoincrement())
+  spotify_id    String  @unique @db.VarChar(255)
+  display_name  String  @unique
+  email         String  @unique
+  username      String
+  images        Json
+  external_urls String
+  followers     Int
+  following     Int
+  playlists     Int
+  href          String
+  posts         Post[]
+  favTracks     Track[]
+}
+
+model Track {
+  id            Int     @id @default(autoincrement())
+  track_id      String  @unique @db.VarChar(255)
+  name          String
+  artists       Json
+  album         Json
+  external_urls String
+  preview_url   String?
+  href          String
+  duration_ms   Int
+  is_playable   Boolean
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id])
 }
 
 model Post {
@@ -23,12 +46,4 @@ model Post {
   published Boolean @default(false)
   authorId  Int?
   author    User?   @relation(fields: [authorId], references: [id])
-}
-model Image {
-  id        Int     @id @default(autoincrement())
-  height  Int
-  width   Int
-  url     String
-  userId Int
-  user    User?   @relation(fields: [userId], references: [id])
 }

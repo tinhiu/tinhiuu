@@ -1,20 +1,41 @@
 import Image from 'next/image'
 import prisma from '@/lib/prisma'
-
+import { User } from '@/lib/types'
+import background from '~/public/background'
 export default async function Home () {
-  const user = await prisma.user.findUnique({
-    where: { username: 'tinhiu' }
-  })
-  const image = await prisma.image.findMany({
-    where: { userId: user?.id }
-  })
+  let user = (await prisma.user.findUnique({
+    where: { display_name: 'tinhf' }
+  })) as unknown as User
 
-  console.log('users: ', user)
-  console.log('images: ', image)
+  console.log('user: ', user)
+  const tracks = await prisma.track.findMany({
+    where: { userId: user.id }
+  })
+  console.log('background: ', background)
+  if (!user) {
+    return (
+      <div className='flex flex-col flex-1 text-cyan-50 items-center justify-center bg-zinc-50/85 font-sans dark:bg-black'>
+        <h1>User not found</h1>
+      </div>
+    )
+  }
   return (
-    <div className='flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black'>
-      <h1>Hello {user?.name}</h1>
-      <Image src={image[0].url} alt='User Image' width={300} height={300} />
+    <div className='flex flex-col flex-1 text-cyan-50 items-center justify-center bg-zinc-50/5 font-sans dark:bg-black'>
+      <>
+        <h1>Hello {user.username}</h1>
+        <Image
+          src={
+            user.images && Array.isArray(user.images) && user.images.length > 0
+              ? (user.images[0].url as string)
+              : '/default-avatar.png'
+          }
+          priority
+          alt='User Image'
+          width={300}
+          height={300}
+          className='w-96 h-96 rounded-lg shadow-md object-cover'
+        />
+      </>
     </div>
   )
 }

@@ -3,7 +3,20 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['i.scdn.co', 'lastfm.freetls.fastly.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',
+        port: '',
+        pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'lastfm.freetls.fastly.net',
+        port: '',
+        pathname: '/**'
+      }
+    ],
     unoptimized: true
   },
   typescript: {

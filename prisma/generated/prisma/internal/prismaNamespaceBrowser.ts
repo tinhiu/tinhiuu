@@ -52,8 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Post: 'Post',
-  Image: 'Image'
+  Track: 'Track',
+  Post: 'Post'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -74,12 +74,36 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  username: 'username',
+  spotify_id: 'spotify_id',
+  display_name: 'display_name',
   email: 'email',
-  name: 'name'
+  username: 'username',
+  images: 'images',
+  external_urls: 'external_urls',
+  followers: 'followers',
+  following: 'following',
+  playlists: 'playlists',
+  href: 'href'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const TrackScalarFieldEnum = {
+  id: 'id',
+  track_id: 'track_id',
+  name: 'name',
+  artists: 'artists',
+  album: 'album',
+  external_urls: 'external_urls',
+  preview_url: 'preview_url',
+  href: 'href',
+  duration_ms: 'duration_ms',
+  is_playable: 'is_playable',
+  userId: 'userId'
+} as const
+
+export type TrackScalarFieldEnum = (typeof TrackScalarFieldEnum)[keyof typeof TrackScalarFieldEnum]
 
 
 export const PostScalarFieldEnum = {
@@ -93,17 +117,6 @@ export const PostScalarFieldEnum = {
 export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
 
 
-export const ImageScalarFieldEnum = {
-  id: 'id',
-  height: 'height',
-  width: 'width',
-  url: 'url',
-  userId: 'userId'
-} as const
-
-export type ImageScalarFieldEnum = (typeof ImageScalarFieldEnum)[keyof typeof ImageScalarFieldEnum]
-
-
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -112,12 +125,28 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 export const NullsOrder = {
